@@ -20,12 +20,35 @@ const connection = mysql.createConnection({
 
 //Controller post aja*
 app.post("/", (req, res) => {
-  connection.query(
-    "INSERT INTO `db_user_register`.`data_user` (`username`, `password`, `email`) VALUES ('Arif', 'syaogi', 'syaogi@mail.com');",
-    (err, result) => {
-      res.status(200).send(result);
-    }
-  );
+  console.log(req.body);
+  //"INSERT INTO `db_user_register`.`data_user` (`username`, `password`, `email`) VALUES ('Arif', 'syaogi', 'syaogi@mail.com');",
+  //INSERT INTO `db_user_register`.`data_user` (`username`, `password`, `email`) VALUES (`qwerty`, `qwerty`, `qwerty`);
+  //"INSERT INTO `db_user_register`.`data_user` (`username`, `password`, `email`) VALUES (`qwerty`, `qwerty`, `qwerty`);"
+  // const QUERY =
+  //   '"INSERT INTO `db_user_register`.`data_user` (`username`, `password`, `email`) VALUES (`' +
+  //   req.body.username +
+  //   "', '" +
+  //   req.body.password +
+  //   "', '" +
+  //   req.body.email +
+  //   "');";
+  const USERNAME = req.body.username;
+  const PASSWORD = req.body.password;
+  const EMAIL = req.body.email;
+
+  const QUERTY =
+    "INSERT INTO `db_user_register`.`data_user` (`username`, `password`, `email`) VALUES ('" +
+    USERNAME +
+    "', '" +
+    PASSWORD +
+    "', '" +
+    EMAIL +
+    "');";
+  console.log(QUERTY);
+  connection.query(QUERTY, (err, result) => {
+    res.status(200).send(result);
+    // res.status(400).send(err);
+  });
 });
 
 connection.connect();

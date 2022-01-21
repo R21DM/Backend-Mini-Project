@@ -47,7 +47,7 @@ app.post("/", (req, res) => {
   console.log(QUERTY);
   connection.query(QUERTY, (err, result) => {
     res.status(200).send(result);
-    // res.status(400).send(err);
+    res.status(400).send(err);
   });
 });
 

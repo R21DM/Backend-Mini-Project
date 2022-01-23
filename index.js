@@ -10,33 +10,23 @@ const PORT = 8000;
 app.use(express.json());
 app.use(cors());
 
-//Database ganti*
+//Database
 const connection = mysql.createConnection({
   host: "localhost",
-  user: "root",
-  password: "tyo06081997",
-  database: "db_user_register",
+  user: "test",
+  password: "test",
+  database: "db_project",
 });
 
-//Controller post aja*
+//Controller POST
 app.post("/", (req, res) => {
   console.log(req.body);
-  //"INSERT INTO `db_user_register`.`data_user` (`username`, `password`, `email`) VALUES ('Arif', 'syaogi', 'syaogi@mail.com');",
-  //INSERT INTO `db_user_register`.`data_user` (`username`, `password`, `email`) VALUES (`qwerty`, `qwerty`, `qwerty`);
-  //"INSERT INTO `db_user_register`.`data_user` (`username`, `password`, `email`) VALUES (`qwerty`, `qwerty`, `qwerty`);"
-  // const QUERY =
-  //   '"INSERT INTO `db_user_register`.`data_user` (`username`, `password`, `email`) VALUES (`' +
-  //   req.body.username +
-  //   "', '" +
-  //   req.body.password +
-  //   "', '" +
-  //   req.body.email +
-  //   "');";
+
   const USERNAME = req.body.username;
   const PASSWORD = req.body.password;
   const EMAIL = req.body.email;
 
-  const QUERTY =
+  const QUERY =
     "INSERT INTO `db_user_register`.`data_user` (`username`, `password`, `email`) VALUES ('" +
     USERNAME +
     "', '" +
@@ -44,10 +34,11 @@ app.post("/", (req, res) => {
     "', '" +
     EMAIL +
     "');";
-  console.log(QUERTY);
-  connection.query(QUERTY, (err, result) => {
+  
+//   console.log(QUERY);
+  
+  connection.query(QUERY, (err, result) => {
     res.status(200).send(result);
-    // res.status(400).send(err);
   });
 });
 
@@ -56,8 +47,3 @@ connection.connect();
 server.listen(PORT, () => {
   console.log("Socket server is running at port:", PORT);
 });
-
-// POST method route
-// app.post("/", function (req, res) {
-//   res.send("POST request to the homepage");
-// });
